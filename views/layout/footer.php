@@ -1,7 +1,7 @@
     <!-- Footer -->
     <div class="footer">
         <div class="container border-top mt-3 py-3 text-center">
-            <span>Scandiweb Test assignment</span>
+            <span>Scandiweb fullstack test task</span>
         </div>
     </div>
     <!-- Footer -->
