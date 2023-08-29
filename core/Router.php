@@ -8,12 +8,18 @@ use Scandiweb\Exceptions\RouteNotFound;
 class Router
 {
     private static array $routes = [];
+    private static array $views  = [];
 
 
-    private static function addRoute(string $request_method, string $path, callable|array $action): void
+    private static function addRoute(string $request_method, string $path, string|callable|array $action): void
     {
         $path = rtrim($path, '/');
-        static::$routes[$path][$request_method] = $action;
+
+        if ($request_method === 'VIEW') {
+            static::$views[$path] = $action;
+        } else {
+            static::$routes[$path][$request_method] = $action;
+        }
     }
 
     public static function get(string $path, callable|array $action): void
@@ -31,6 +37,11 @@ class Router
         static::addRoute('DELETE', $path, $action);
     }
 
+    public static function view(string $path, $view): void
+    {
+        static::addRoute('VIEW', $path, $view);
+    }
+
     /**
      * Add other request methods here if needed
      */
@@ -45,6 +56,10 @@ class Router
         $path = rtrim($path, '/');
 
         if (!isset(static::$routes[$path])) {
+            if (isset(static::$views[$path])) {
+                return self::resolveView(static::$views[$path]);
+            }
+
             throw new RouteNotFound();
         }
 
@@ -67,5 +82,13 @@ class Router
         }
 
         return $action();
+    }
+
+    /**
+     * View Resolver
+     */
+    public static function resolveView($view)
+    {
+        return View::make($view);
     }
 }
