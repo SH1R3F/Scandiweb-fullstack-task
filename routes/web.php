@@ -1,5 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProductController;
 use Scandiweb\Router;
 
+Router::view('/', 'welcome');
