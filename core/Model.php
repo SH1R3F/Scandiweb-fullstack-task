@@ -43,6 +43,13 @@ abstract class Model
         $model->attributes = $model->db->getOne('*', $model->table, $id);
         return $model;
     }
+
+    public static function first()
+    {
+        $model = new static;
+        $model->attributes = $model->db->getFirst('*', $model->table);
+        return $model;
+    }
     
     public static function create(array $data)
     {

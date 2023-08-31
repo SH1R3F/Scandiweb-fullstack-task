@@ -55,6 +55,11 @@ class Database
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
+    public function getFirst(string $columns, string $table)
+    {
+        $stmt = static::$connection->query("SELECT $columns FROM $table LIMIT 1");
+        return $stmt->fetch();
+    }
 
     public function insert(string $table, array $data)
     {
