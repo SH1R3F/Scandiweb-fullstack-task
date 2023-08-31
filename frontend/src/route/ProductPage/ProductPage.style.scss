@@ -1,0 +1,13 @@
+.ProductPage {
+  max-width: 1200px;
+  margin: 80px auto 0;
+  padding: 0 10px;
+
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-gap: 40px;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: auto;
+  }
+}

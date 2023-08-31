@@ -7,6 +7,7 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
+import ProductPage from "./route/ProductPage/ProductPage.component";
 import CategoryPage from "./route/CategoryPage/CategoryPage.component";
 
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <CategoryPage />
+            },
+            {
+                path: "/product/:productId",
+                element: <ProductPage/>
             },
         ],
     },
