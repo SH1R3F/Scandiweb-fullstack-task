@@ -7,7 +7,7 @@ class ProductCardComponent extends PureComponent {
     render() {
         return (
             <div className="ProductCard">
-                <div className="ProductCard-OutOfStockOverlay">Out of stock</div>
+                {/*<div className="ProductCard-OutOfStockOverlay">Out of stock</div>*/}
                 <Link to={'product/1'}><img className="ProductCard-Photo" src="/product.png" alt="Product"/></Link>
                 <div className="ProductCard-AddToCart">
                     <button>
