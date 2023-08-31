@@ -43,9 +43,9 @@ class Database
     /**
      * Database Queries
      */
-    public function get(string $columns, string $table): array
+    public function get(string $columns, string $table, string $where = ''): array
     {
-        $stmt = static::$connection->query("SELECT $columns FROM $table");
+        $stmt = static::$connection->query("SELECT $columns FROM $table $where");
         return $stmt->fetchAll();
     }
 

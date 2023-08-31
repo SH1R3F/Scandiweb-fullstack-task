@@ -3,6 +3,7 @@
 namespace Scandiweb;
 
 use Scandiweb\Relations\BelongsTo;
+use Scandiweb\Relations\HasMany;
 
 abstract class Model
 {
@@ -98,7 +99,7 @@ abstract class Model
             // Relationship check
             if (method_exists($this, $attribute)) {
                 $relation = $this->$attribute();
-                if ($relation instanceof BelongsTo) {
+                if ($relation instanceof BelongsTo || $relation instanceof HasMany) {
                     return $this->prepareRelation($relation);
                 }
             }
@@ -139,10 +140,27 @@ abstract class Model
         return new BelongsTo($model, $column);
     }
 
-    private function prepareRelation(BelongsTo $callable)
+    public function hasMany($model, $column): HasMany
+    {
+        return new HasMany($model, $column);
+    }
+
+    private function prepareRelation(BelongsTo|HasMany $callable)
     {
         $model = new $callable->model;
-        $model->attributes = $model->db->getOne('*', $model->table, $this->{$callable->column});
-        return $model;
+
+        if ($callable instanceof BelongsTo) {
+            $model->attributes = $model->db->getOne('*', $model->table, $this->{$callable->column});
+            return $model;
+        }
+
+        // Otherwise, HasMany relationship
+        $records = $model->db->get('*', $model->table, "WHERE {$callable->column} = {$this->id}");
+
+        return array_map(function($record) use ($callable) {
+            $model = new $callable->model;
+            $model->attributes = $record;
+            return $model;
+        }, $records);
     }
 }
