@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Scandiweb\Model;
 use Scandiweb\Relations\BelongsTo;
+use Scandiweb\Relations\HasMany;
 
 class Product extends Model
 {
@@ -25,4 +26,8 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function prices(): HasMany
+    {
+        return $this->hasMany(Price::class, 'product_id');
+    }
 }
