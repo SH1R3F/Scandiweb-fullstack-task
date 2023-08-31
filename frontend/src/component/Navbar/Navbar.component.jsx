@@ -1,25 +1,15 @@
 import {PureComponent} from "react";
 
 import './Navbar.style.scss'
-import AddToCart from "../AddToCart/AddToCart.component";
+import AddToCart from "../AddToCart/AddToCart.container";
 import CartOverlay from "../CartOverlay/CartOverlay.component";
 import {Link} from "react-router-dom";
 
 export class NavbarComponent extends PureComponent {
 
-    state = {
-        isCartOpen: false
-    }
-
-    toggleCart() {
-        this.setState({
-            ...this.state,
-            isCartOpen: !this.state.isCartOpen
-        })
-    }
-
     render() {
-        const {isCartOpen} = this.state
+        const {minicartStatus} = this.props
+
         return (
             <header className="Navbar">
                 <div className="Navbar-Container">
@@ -31,8 +21,8 @@ export class NavbarComponent extends PureComponent {
                         </ul>
                     </nav>
                     <img className="Navbar-Logo" src="/a-logo.png" alt="Scandiweb"/>
-                    <AddToCart toggler={this.toggleCart.bind(this)}/>
-                    {isCartOpen && <CartOverlay/>}
+                    <AddToCart />
+                    {minicartStatus && <CartOverlay/>}
                 </div>
             </header>
         )

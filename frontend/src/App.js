@@ -1,6 +1,6 @@
 import './App.css';
 import React from "react";
-import HomePage from "./route/HomePage/HomePage.component";
+import HomePage from "./route/HomePage/HomePage.container";
 
 import {
     createBrowserRouter,
