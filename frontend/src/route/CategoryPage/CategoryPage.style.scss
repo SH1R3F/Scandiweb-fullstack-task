@@ -1,0 +1,31 @@
+.CategoryPage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  &-Title {
+    color: #1D1F22;
+    text-align: initial;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 80px 0;
+  }
+
+  &-Products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 60px;
+    grid-row-gap: 80px;
+
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 30px;
+      grid-row-gap: 40px;
+    }
+    @media screen and (max-width: 810px) {
+      grid-template-columns: auto;
+      grid-row-gap: 30px;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+.ProductCard {
+  text-align: left;
+  padding: 16px;
+  transition: all .2s;
+  position: relative;
+
+  &-OutOfStockOverlay {
+    text-transform: uppercase;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8D8F9A;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    z-index: 2;
+  }
+
+  &_isActive, &:hover {
+    box-shadow: 0 4px 35px 0 rgba(168, 172, 176, 0.19);
+
+    .ProductCard-AddToCart {
+      opacity: 1;
+      transition: all .2s;
+    }
+  }
+
+  &-Photo {
+    height: 330px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &-AddToCart {
+    position: relative;
+    opacity: 0;
+
+    button {
+      position: absolute;
+      top: -30px;
+      right: 10px;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      background: #5ECE7B;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+
+  &-Title {
+    margin-top: 24px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    color: #1D1F22;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  &-Price {
+    color: #1D1F22;
+    text-align: right;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+  }
+}
