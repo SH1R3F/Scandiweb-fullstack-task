@@ -155,7 +155,7 @@ abstract class Model
         }
 
         // Otherwise, HasMany relationship
-        $records = $model->db->get('*', $model->table, "WHERE {$callable->column} = {$this->id}");
+        $records = $model->db->get('*', $model->table, "WHERE {$callable->column} = '{$this->id}'");
 
         return array_map(function($record) use ($callable) {
             $model = new $callable->model;
