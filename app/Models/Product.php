@@ -35,4 +35,9 @@ class Product extends Model
     {
         return $this->hasMany(Gallery::class, 'product_id');
     }
+
+    public function attributeValues(): HasMany
+    {
+        return $this->hasMany(AttributeValue::class, 'product_id');
+    }
 }
