@@ -49,7 +49,7 @@ class Database
         return $stmt->fetchAll();
     }
 
-    public function getOne(string $columns, string $table, int $id)
+    public function getOne(string $columns, string $table, int|string $id)
     {
         $stmt = static::$connection->prepare("SELECT $columns FROM $table WHERE id = ? LIMIT 1");
         $stmt->execute([$id]);

@@ -37,7 +37,7 @@ abstract class Model
         }, $records);
     }
 
-    public static function find(int $id)
+    public static function find(int|string $id)
     {
         $model = new static;
         $model->attributes = $model->db->getOne('*', $model->table, $id);
