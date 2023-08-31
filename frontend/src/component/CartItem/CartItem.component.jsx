@@ -13,22 +13,22 @@ class CartItemComponent extends PureComponent {
                     <div className="CartItem-Attribute">
                         <span className="CartItem-AttributeName">Size</span>
                         <div className="CartItem-Options">
-                            <input type="radio" name="size" value="xs" id="xs"/>
+                            <input type="radio" name="size" defaultValue="xs" id="xs"/>
                             <div className="CartItem-Option">
                                 <label htmlFor="xs">XS</label>
                             </div>
 
-                            <input type="radio" name="size" value="s" id="s"/>
+                            <input type="radio" name="size" defaultValue="s" id="s"/>
                             <div className="CartItem-Option">
                                 <label htmlFor="s">S</label>
                             </div>
 
-                            <input type="radio" name="size" value="m" id="m"/>
+                            <input type="radio" name="size" defaultValue="m" id="m"/>
                             <div className="CartItem-Option CartItem-Option_isSelected">
                                 <label htmlFor="m">M</label>
                             </div>
 
-                            <input type="radio" name="size" value="l" id="l"/>
+                            <input type="radio" name="size" defaultValue="l" id="l"/>
                             <div className="CartItem-Option">
                                 <label htmlFor="l">L</label>
                             </div>
@@ -37,15 +37,15 @@ class CartItemComponent extends PureComponent {
                     <div className="CartItem-Attribute">
                         <span className="CartItem-AttributeName">Color</span>
                         <div className="CartItem-Options">
-                            <input type="radio" name="color" value="gray" id="gray"/>
+                            <input type="radio" name="color" defaultValue="gray" id="gray"/>
                             <label style={{background: '#D3D2D5'}} htmlFor="gray" className="CartItem-Option CartItem-Option_isSelected CartItem-Option_isColor">
                             </label>
 
-                            <input type="radio" name="color" value="black" id="black"/>
+                            <input type="radio" name="color" defaultValue="black" id="black"/>
                             <label style={{background: '#2B2B2B'}} htmlFor="black" className="CartItem-Option CartItem-Option_isColor">
                             </label>
 
-                            <input type="radio" name="color" value="green" id="green"/>
+                            <input type="radio" name="color" defaultValue="green" id="green"/>
                             <label style={{background: '#0F6450'}} htmlFor="green" className="CartItem-Option CartItem-Option_isColor">
                             </label>
                         </div>
@@ -53,7 +53,7 @@ class CartItemComponent extends PureComponent {
                 </div>
                 <div className="CartItem-Qty">
                     <button>+</button>
-                    <input type="number" value={1}/>
+                    <input type="number" defaultValue={1}/>
                     <button>-</button>
                 </div>
                 <div className="CartItem-Photo">

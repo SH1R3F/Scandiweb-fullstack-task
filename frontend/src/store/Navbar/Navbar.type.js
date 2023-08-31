@@ -1,0 +1,1 @@
+export const SET_MINICART_OPEN = 'SET_MINICART_OPEN'

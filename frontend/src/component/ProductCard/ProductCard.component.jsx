@@ -5,10 +5,11 @@ import {Link} from "react-router-dom";
 
 class ProductCardComponent extends PureComponent {
     render() {
+        const {product} = this.props
         return (
             <div className="ProductCard">
                 {/*<div className="ProductCard-OutOfStockOverlay">Out of stock</div>*/}
-                <Link to={'product/1'}><img className="ProductCard-Photo" src="/product.png" alt="Product"/></Link>
+                <Link to={`product/${product.id}`}><img className="ProductCard-Photo" src={product.image} alt="Product"/></Link>
                 <div className="ProductCard-AddToCart">
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -18,8 +19,8 @@ class ProductCardComponent extends PureComponent {
                         </svg>
                     </button>
                 </div>
-                <h3 className="ProductCard-Title"><Link to={'product/1'}>Running Short</Link></h3>
-                <span className="ProductCard-Price">$50.00</span>
+                <h3 className="ProductCard-Title"><Link to={`product/${product.id}`}>{product.name}</Link></h3>
+                <span className="ProductCard-Price">${product.price}</span>
             </div>
         );
     }

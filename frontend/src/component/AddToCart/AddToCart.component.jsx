@@ -5,7 +5,7 @@ import './AddToCart.style.scss'
 class AddToCartComponent extends PureComponent {
     render() {
         return (
-            <button className="MiniCart" onClick={this.props.toggler} readOnly>
+            <button className="MiniCart" onClick={this.props.toggler} >
                 <img src="/empty-cart.png" alt="Cart"/>
 
                 <span className="MiniCart-Counter">2</span>
