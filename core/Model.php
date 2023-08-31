@@ -2,6 +2,8 @@
 
 namespace Scandiweb;
 
+use Scandiweb\Relations\BelongsTo;
+
 abstract class Model
 {
 
@@ -92,6 +94,15 @@ abstract class Model
     public function __get(string $attribute): mixed
     {
         if (!array_key_exists($attribute, $this->attributes)) {
+
+            // Relationship check
+            if (method_exists($this, $attribute)) {
+                $relation = $this->$attribute();
+                if ($relation instanceof BelongsTo) {
+                    return $this->prepareRelation($relation);
+                }
+            }
+
             return null;
         }
 
@@ -118,5 +129,20 @@ abstract class Model
         }
 
         $this->attributes[$name] = $value;
+    }
+
+    /**
+     * Relationships
+     */
+    public function belongsTo($model, $column): BelongsTo
+    {
+        return new BelongsTo($model, $column);
+    }
+
+    private function prepareRelation(BelongsTo $callable)
+    {
+        $model = new $callable->model;
+        $model->attributes = $model->db->getOne('*', $model->table, $this->{$callable->column});
+        return $model;
     }
 }
