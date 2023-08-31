@@ -1,12 +1,19 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent} from "react";
 
-class HomePageComponent extends PureComponent {
+import './HomePage.style.scss'
+import {Outlet} from "react-router-dom";
+import Navbar from "../../component/Navbar/Navbar.component";
+
+export class HomePageComponent extends PureComponent {
     render() {
         return (
-            <div>
-                Homepage
-            </div>
-        );
+            <>
+                <Navbar/>
+                <div className="Overlay" id="overlay"></div>
+                <Outlet/>
+            </>
+        )
     }
 }
+
 export default HomePageComponent;

@@ -1,0 +1,43 @@
+body {
+  transition: all .1s;
+}
+
+.CartOverlay {
+  transition: all .1s;
+  position: absolute;
+  top: 100%;
+  right: 0;
+
+  background: #FFF;
+  padding: 32px 16px;
+  text-align: left;
+
+  &-Counter {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+  }
+
+  &-Total {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-Submit {
+    background: #5ECE7B;
+    text-transform: uppercase;
+    width: 100%;
+    border: none;
+    padding: 16px 32px;
+    margin-top: 32px;
+    color: #FFF;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 811px) {
+  .CartOverlay {
+    width: 94vw;
+    right: 3vw;
+  }
+}

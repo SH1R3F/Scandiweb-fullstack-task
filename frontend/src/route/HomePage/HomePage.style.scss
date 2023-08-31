@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.Overlay {
+  background: rgba(57, 55, 72, 0.22);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: calc(100vh - 0px);
+  width: 100vw;
+}
