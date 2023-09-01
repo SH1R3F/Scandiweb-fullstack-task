@@ -103,17 +103,15 @@ abstract class Model
                     return $this->prepareRelation($relation);
                 }
             }
-
-            return null;
         }
 
         // Support accessors
         if (method_exists($this, $attribute)) {
             $accessor = $this->$attribute();
-            return ($accessor->get)($this->attributes[$attribute]);
+            return ($accessor->get)($this->attributes[$attribute] ?? null);
         }
 
-        return $this->attributes[$attribute];
+        return $this->attributes[$attribute] ?? null;
     }
 
     public function __set(string $name, mixed $value): void
