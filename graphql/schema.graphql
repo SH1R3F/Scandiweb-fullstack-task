@@ -22,4 +22,5 @@ type Product {
     description: String
     category_id: Int
     brand: String
+    gallery: [String]
 }

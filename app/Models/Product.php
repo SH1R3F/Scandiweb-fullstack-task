@@ -21,12 +21,22 @@ class Product extends Model
 
 
     /**
-     * InStock Accessor and Mutator
+     * InStock Accessor
      */
     protected function inStock(): Attribute
     {
         return Attribute::make(
             get: fn () => $this->in_stock,
+        );
+    }
+
+    /**
+     * Gallery Accessor
+     */
+    protected function gallery(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => json_decode($value, 1),
         );
     }
 
@@ -41,11 +51,6 @@ class Product extends Model
     public function prices(): HasMany
     {
         return $this->hasMany(Price::class, 'product_id');
-    }
-
-    public function images(): HasMany
-    {
-        return $this->hasMany(Gallery::class, 'product_id');
     }
 
     public function attributeValues(): HasMany
