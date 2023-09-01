@@ -23,4 +23,16 @@ type Product {
     category_id: Int
     brand: String
     gallery: [String]
+    prices: [Price]
+}
+
+type Price {
+    id: ID
+    amount: Float
+    currency: Currency
+}
+
+type Currency {
+    label: String
+    symbol: String
 }
