@@ -14,5 +14,7 @@
             "Scandiweb\\": "core/"
         }
     },
-    "require": {}
+    "require": {
+        "webonyx/graphql-php": "^15.6"
+    }
 }
