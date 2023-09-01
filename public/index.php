@@ -42,7 +42,7 @@ require __DIR__ . '/../routes/web.php';
 /**
  * Validate CSRF
  */
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && trim($_SERVER['REQUEST_URI'], '/') !== 'graphql') {
     if (Session::get(Session::CSRF) !== $_POST[Session::CSRF]) {
         throw new PageExpired;
     }
