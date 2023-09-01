@@ -20,9 +20,9 @@ class AttributeValue extends Model
     /**
      * Relationships
      */
-    public function product(): BelongsTo
+    public function attribute(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Attribute::class, 'attribute_id');
     }
 
 }

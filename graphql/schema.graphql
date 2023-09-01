@@ -21,9 +21,23 @@ type Product {
     inStock: Boolean
     description: String
     category: Category
+    attrs: [Attribute]
     brand: String
     gallery: [String]
     prices: [Price]
+}
+
+type Attribute {
+    id: ID
+    name: String
+    type: String
+    items: [AttributeValue]
+}
+
+type AttributeValue {
+    id: ID
+    value: String
+    display_value: String
 }
 
 type Price {

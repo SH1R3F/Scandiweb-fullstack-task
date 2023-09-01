@@ -6,6 +6,7 @@ use Scandiweb\Casts\Attribute;
 use Scandiweb\Model;
 use Scandiweb\Relations\BelongsTo;
 use Scandiweb\Relations\HasMany;
+use App\Models\Attribute as AttributeModel;
 
 class Product extends Model
 {
@@ -53,8 +54,8 @@ class Product extends Model
         return $this->hasMany(Price::class, 'product_id');
     }
 
-    public function attributeValues(): HasMany
+    public function attrs(): HasMany
     {
-        return $this->hasMany(AttributeValue::class, 'product_id');
+        return $this->hasMany(AttributeModel::class, 'product_id');
     }
 }
