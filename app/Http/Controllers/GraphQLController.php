@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Graphql\Resolvers\CategoryResolver;
+use App\Graphql\Resolvers\ProductResolver;
 use GraphQL\GraphQL;
 use GraphQL\Utils\BuildSchema;
 
@@ -44,6 +45,8 @@ class GraphQLController
         return [
             'categories' => fn(array $rootValue, array $args) => CategoryResolver::getCategories($rootValue, $args),
             'category'   => fn(array $rootValue, array $args) => CategoryResolver::getCategory($rootValue, $args),
+            'products'   => fn(array $rootValue, array $args) => ProductResolver::getProducts($rootValue, $args),
+            'product'    => fn(array $rootValue, array $args) => ProductResolver::getProduct($rootValue, $args),
         ];
     }
 }
