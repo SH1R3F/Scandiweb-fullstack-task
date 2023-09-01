@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Scandiweb\Casts\Attribute;
 use Scandiweb\Model;
 use Scandiweb\Relations\BelongsTo;
 use Scandiweb\Relations\HasMany;
@@ -17,6 +18,17 @@ class Product extends Model
      * Fillable Attributes for mass assignment
      */
     protected $fillable = ['name', 'in_stock', 'description', 'category_id'];
+
+
+    /**
+     * InStock Accessor and Mutator
+     */
+    protected function inStock(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->in_stock,
+        );
+    }
 
     /**
      * Relationships
