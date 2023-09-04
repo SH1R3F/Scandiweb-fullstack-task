@@ -1,7 +1,7 @@
 import {PureComponent} from "react";
 
 import './CategoryPage.style.scss'
-import ProductCard from "../../component/ProductCard/ProductCard.component";
+import ProductCard from "../../component/ProductCard/ProductCard.container";
 import {withParams} from "../withParams";
 
 class CategoryPageComponent extends PureComponent {
