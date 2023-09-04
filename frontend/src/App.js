@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import ProductPage from "./route/ProductPage/ProductPage.component";
-import CategoryPage from "./route/CategoryPage/CategoryPage.component";
+import CategoryPage from "./route/CategoryPage/CategoryPage.container";
 
 const router = createBrowserRouter([
     {
