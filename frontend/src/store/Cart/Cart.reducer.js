@@ -10,7 +10,7 @@ export const CartReducer = (state = getInitialState(), action) => {
             const {product} = action
             return {
                 ...state,
-                cartProducts: state.cartProducts.push(product)
+                cartProducts: [...state.cartProducts, product]
             }
 
         default:
