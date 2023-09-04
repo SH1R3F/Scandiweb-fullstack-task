@@ -23,8 +23,6 @@ class CategoryPageComponent extends PureComponent {
     render() {
         const {categoryPage = []} = this.props
 
-        console.log(categoryPage)
-
         if (categoryPage.length === 0) {
             return <div>Loading...</div>;
         }
