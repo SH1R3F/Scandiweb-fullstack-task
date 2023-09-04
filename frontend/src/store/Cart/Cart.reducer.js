@@ -1,4 +1,4 @@
-import {ADD_PRODUCT_TO_CART} from "./Cart.type";
+import {UPDATE_CART_PRODUCTS} from "./Cart.type";
 
 export const getInitialState = () => ({
     cartProducts: []
@@ -6,11 +6,11 @@ export const getInitialState = () => ({
 
 export const CartReducer = (state = getInitialState(), action) => {
     switch (action.type) {
-        case ADD_PRODUCT_TO_CART:
-            const {product} = action
+        case UPDATE_CART_PRODUCTS:
+            const {products} = action
             return {
                 ...state,
-                cartProducts: [...state.cartProducts, product]
+                cartProducts: products
             }
 
         default:

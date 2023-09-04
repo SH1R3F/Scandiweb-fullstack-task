@@ -1,6 +1,6 @@
-import {ADD_PRODUCT_TO_CART} from "./Cart.type";
+import {UPDATE_CART_PRODUCTS} from "./Cart.type";
 
-export const addProductToCart = (product) => ({
-    type: ADD_PRODUCT_TO_CART,
-    product
+export const updateCartProducts = (products) => ({
+    type: UPDATE_CART_PRODUCTS,
+    products
 })
