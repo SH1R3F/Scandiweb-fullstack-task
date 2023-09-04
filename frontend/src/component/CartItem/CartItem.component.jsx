@@ -1,63 +1,42 @@
-import {PureComponent} from "react";
+import {Fragment, PureComponent} from "react";
 
 import './CartItem.style.scss'
 
 class CartItemComponent extends PureComponent {
     render() {
+        const {product} = this.props;
+        console.log(product)
         return (
             <div className="CartItem">
                 <div className="CartItem-Details">
-                    <h4 className="CartItem-Title">Running Short</h4>
-                    <span className="CartItem-Price">$50.00</span>
+                    <h4 className="CartItem-Title">{product.name}</h4>
+                    <span
+                        className="CartItem-Price">{product.prices[0].currency.symbol}{product.prices[0].amount}</span>
 
-                    <div className="CartItem-Attribute">
-                        <span className="CartItem-AttributeName">Size</span>
-                        <div className="CartItem-Options">
-                            <input type="radio" name="size" defaultValue="xs" id="xs"/>
-                            <div className="CartItem-Option">
-                                <label htmlFor="xs">XS</label>
-                            </div>
-
-                            <input type="radio" name="size" defaultValue="s" id="s"/>
-                            <div className="CartItem-Option">
-                                <label htmlFor="s">S</label>
-                            </div>
-
-                            <input type="radio" name="size" defaultValue="m" id="m"/>
-                            <div className="CartItem-Option CartItem-Option_isSelected">
-                                <label htmlFor="m">M</label>
-                            </div>
-
-                            <input type="radio" name="size" defaultValue="l" id="l"/>
-                            <div className="CartItem-Option">
-                                <label htmlFor="l">L</label>
+                    {product.attrs.map(attr => (
+                        <div key={attr.id} className="CartItem-Attribute">
+                            <span className="CartItem-AttributeName">{attr.name}</span>
+                            <div className="CartItem-Options">
+                                {attr.items.map((item) => (
+                                    <Fragment key={item.id}>
+                                        <input type="radio" name={attr.name} defaultValue={item.value}
+                                               id={`${product.id}-${attr.id}-${item.id}`}/>
+                                        <label style={{background: attr.type === 'swatch' ? item.value : null}}  className={`CartItem-Option ${item.selected && 'CartItem-Option_isSelected'} ${attr.type === 'swatch' && 'CartItem-Option_isColor'}`}  htmlFor={`${product.id}-${attr.id}-${item.id}`}>
+                                            {attr.type === 'text' && item.value}
+                                        </label>
+                                    </Fragment>
+                                ))}
                             </div>
                         </div>
-                    </div>
-                    <div className="CartItem-Attribute">
-                        <span className="CartItem-AttributeName">Color</span>
-                        <div className="CartItem-Options">
-                            <input type="radio" name="color" defaultValue="gray" id="gray"/>
-                            <label style={{background: '#D3D2D5'}} htmlFor="gray" className="CartItem-Option CartItem-Option_isSelected CartItem-Option_isColor">
-                            </label>
-
-                            <input type="radio" name="color" defaultValue="black" id="black"/>
-                            <label style={{background: '#2B2B2B'}} htmlFor="black" className="CartItem-Option CartItem-Option_isColor">
-                            </label>
-
-                            <input type="radio" name="color" defaultValue="green" id="green"/>
-                            <label style={{background: '#0F6450'}} htmlFor="green" className="CartItem-Option CartItem-Option_isColor">
-                            </label>
-                        </div>
-                    </div>
+                    ))}
                 </div>
                 <div className="CartItem-Qty">
-                    <button>+</button>
-                    <input type="number" defaultValue={1}/>
-                    <button>-</button>
+                    <button onClick={() => {}}>+</button>
+                    <input type="number" defaultValue={product.quantity}/>
+                    <button onClick={() => {}}>-</button>
                 </div>
                 <div className="CartItem-Photo">
-                    <img src="/product.png" alt="Product"/>
+                    <img src={product.gallery[0]} alt="Product"/>
                 </div>
             </div>
         );

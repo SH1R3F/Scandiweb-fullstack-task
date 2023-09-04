@@ -23,10 +23,7 @@ class CartOverlayComponent extends PureComponent {
                 </div>
 
                 <div className="CartOverlay-Items">
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
+                    {cartProducts.map((product, i) => <CartItem key={`${product.id}-${i}`} product={product}/>)}
                 </div>
 
                 <div className="CartOverlay-Total">

@@ -56,7 +56,8 @@
     }
 
     border: 1px solid #000;
-    width: 22px;
+    //width: 22px;
+    padding: 0 5px;
     height: 22px;
     font-size: 12px;
     display: inline-flex;
@@ -70,7 +71,7 @@
       background: #000;
 
       &.CartItem-Option_isSelected {
-        border: 1px solid #5ECE7B;
+        border: 2px solid #5ECE7B;
       }
     }
 
