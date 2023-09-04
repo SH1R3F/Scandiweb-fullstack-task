@@ -7,17 +7,27 @@ import {Link} from "react-router-dom";
 
 export class NavbarComponent extends PureComponent {
 
+    componentDidMount() {
+        const {setCategories} = this.props
+        setCategories()
+    }
+
     render() {
-        const {minicartStatus} = this.props
+        const {minicartStatus, categories = []} = this.props
+
+        if (categories.length === 0) {
+            return <div>Loading...</div>;
+        }
 
         return (
             <header className="Navbar">
                 <div className="Navbar-Container">
                     <nav>
                         <ul>
-                            <li className="Navbar-Item Navbar-Item_isActive"><Link to={'/'}>Women</Link></li>
-                            <li className="Navbar-Item"><Link to={'/'}>Men</Link></li>
-                            <li className="Navbar-Item"><Link to={'/'}>Kids</Link></li>
+                            {categories.map((category) => <li key={category.id} className="Navbar-Item"><Link to={'/'}>{category.name}</Link></li>)}
+                            {/*<li className="Navbar-Item Navbar-Item_isActive"><Link to={'/'}>Women</Link></li>*/}
+                            {/*<li className="Navbar-Item"><Link to={'/'}>Men</Link></li>*/}
+                            {/*<li className="Navbar-Item"><Link to={'/'}>Kids</Link></li>*/}
                         </ul>
                     </nav>
                     <img className="Navbar-Logo" src="/a-logo.png" alt="Scandiweb"/>
