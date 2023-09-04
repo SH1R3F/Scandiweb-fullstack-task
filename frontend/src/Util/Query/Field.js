@@ -9,7 +9,12 @@ export class Field {
     }
 
     addField(field) {
-        this.children.push(new Field(field));
+        if (typeof field === 'string') {
+            this.children.push(new Field(field));
+        } else if (field instanceof Field) {
+            this.children.push(field);
+        }
+        return this;
     }
 
     addFieldList(fieldList) {
