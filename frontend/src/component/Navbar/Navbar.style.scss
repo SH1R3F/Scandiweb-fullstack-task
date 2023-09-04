@@ -28,18 +28,16 @@
         padding: 20px 15px;
 
         a {
+          padding: 20px 15px;
           color: #1D1F22;
           text-decoration: none;
           text-transform: uppercase;
+          transition: all .1s;
         }
 
-        &_isActive, &:hover {
+        &_isActive, a:hover {
           border-bottom: 2px solid #5ECE7B;
-
-          a {
-            transition: all .3s;
-            color: #5ECE7B;
-          }
+          color: #5ECE7B !important;
         }
       }
     }

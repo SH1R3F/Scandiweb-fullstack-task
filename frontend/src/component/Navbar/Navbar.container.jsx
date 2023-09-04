@@ -2,7 +2,6 @@ import Navbar from "./Navbar.component";
 import {setMiniCartState} from "../../store/Navbar/Navbar.action";
 import {connect} from "react-redux";
 import CategoryDispatcher from "../../store/Category/Category.dispatcher";
-import {Component} from "react";
 
 const mapStateToProps = state => {
     return {

@@ -3,7 +3,7 @@ import {PureComponent} from "react";
 import './Navbar.style.scss'
 import AddToCart from "../AddToCart/AddToCart.container";
 import CartOverlay from "../CartOverlay/CartOverlay.component";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 export class NavbarComponent extends PureComponent {
 
@@ -24,10 +24,16 @@ export class NavbarComponent extends PureComponent {
                 <div className="Navbar-Container">
                     <nav>
                         <ul>
-                            {categories.map((category) => <li key={category.id} className="Navbar-Item"><Link to={'/'}>{category.name}</Link></li>)}
-                            {/*<li className="Navbar-Item Navbar-Item_isActive"><Link to={'/'}>Women</Link></li>*/}
-                            {/*<li className="Navbar-Item"><Link to={'/'}>Men</Link></li>*/}
-                            {/*<li className="Navbar-Item"><Link to={'/'}>Kids</Link></li>*/}
+                            {categories.map((category) => (
+                                <li key={category.id} className="Navbar-Item">
+                                    <NavLink
+                                        to={`/${category.id}`}
+                                        className={({ isActive, isPending }) =>
+                                            isActive ? "Navbar-Item_isActive" : ""
+                                        }
+                                    >{category.name}</NavLink>
+                                </li>
+                            ))}
                         </ul>
                     </nav>
                     <img className="Navbar-Logo" src="/a-logo.png" alt="Scandiweb"/>

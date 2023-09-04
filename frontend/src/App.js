@@ -13,12 +13,12 @@ import CategoryPage from "./route/CategoryPage/CategoryPage.component";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <HomePage />,
+        element: <HomePage/>,
         // errorElement: <ErrorPage />,
         children: [
             {
-                path: "/",
-                element: <CategoryPage />
+                path: "/:categoryId?",
+                element: <CategoryPage/>
             },
             {
                 path: "/product/:productId",
