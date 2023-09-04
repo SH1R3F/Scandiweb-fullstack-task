@@ -40,6 +40,10 @@ class CategoryPageComponent extends PureComponent {
         ]
     }
 
+    componentDidMount() {
+        this.props.setProducts()
+    }
+
 
     render() {
         const {products} = this.state
