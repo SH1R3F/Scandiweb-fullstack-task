@@ -10,6 +10,15 @@ class CategoryPageComponent extends PureComponent {
         getCategoryPage(params.categoryId)
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const {params, getCategoryPage} = this.props
+        const {categoryId: prevCategoryId} = prevProps.params
+
+        if (params.categoryId !== prevCategoryId) {
+            getCategoryPage(this.props.params.categoryId)
+        }
+    }
+
 
     render() {
         const {categoryPage = []} = this.props
