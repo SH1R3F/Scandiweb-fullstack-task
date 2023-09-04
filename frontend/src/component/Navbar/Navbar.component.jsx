@@ -2,7 +2,7 @@ import {PureComponent} from "react";
 
 import './Navbar.style.scss'
 import AddToCart from "../AddToCart/AddToCart.container";
-import CartOverlay from "../CartOverlay/CartOverlay.component";
+import CartOverlay from "../CartOverlay/CartOverlay.container";
 import {NavLink} from "react-router-dom";
 
 export class NavbarComponent extends PureComponent {
