@@ -1,8 +1,7 @@
-import {setCategories, setProducts} from "./Category.action";
+import {setCategories, setCategoryPage} from "./Category.action";
 import {prepareQuery} from "../../Util/Query";
 import {executePost} from "../../Util/Request/Request";
 import CategoryQuery from "../../query/Category.query";
-import ProductQuery from "../../query/Product.query";
 
 export class CategoryDispatcher {
 
@@ -17,15 +16,13 @@ export class CategoryDispatcher {
             console.error(error);
         }
     }
-    async updateProducts (dispatch) {
+    async getCategoryPage (dispatch, categoryId) {
         try {
             const data = await executePost(
-                prepareQuery(ProductQuery.getQuery())
+                prepareQuery(CategoryQuery.getCategoryPageQuery(categoryId))
             );
 
-            console.log(data)
-
-            dispatch(setProducts(data.products));
+            dispatch(setCategoryPage(data.category));
         } catch (error) {
             console.error(error);
         }

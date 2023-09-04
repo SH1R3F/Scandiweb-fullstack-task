@@ -1,8 +1,8 @@
-import {SET_CATEGORIES, SET_PRODUCTS} from "./Category.type";
+import {SET_CATEGORIES, SET_CATEGORY_PAGE} from "./Category.type";
 
 export const getInitialState = () => ({
     categories: [],
-    products: []
+    categoryPage: []
 });
 
 
@@ -15,11 +15,11 @@ export const CategoryReducer = (state = getInitialState(), action) => {
                 categories
             }
 
-        case SET_PRODUCTS:
-            const {products} = action;
+        case SET_CATEGORY_PAGE:
+            const {categoryPage} = action;
             return {
                 ...state,
-                products
+                categoryPage
             }
 
         default:

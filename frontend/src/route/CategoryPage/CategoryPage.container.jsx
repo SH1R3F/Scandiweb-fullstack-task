@@ -4,11 +4,13 @@ import {connect} from "react-redux";
 import CategoryDispatcher from "../../store/Category/Category.dispatcher";
 
 const mapStateToProps = state => ({
-    products: state.category.products,
+    categoryPage: state.category.categoryPage,
 })
 
-const mapDispatchToProps = dispatch => ({
-    setProducts: () => CategoryDispatcher.updateProducts(dispatch)
-})
+const mapDispatchToProps = dispatch => {
+    return {
+        getCategoryPage: (categoryId) => CategoryDispatcher.getCategoryPage(dispatch, categoryId)
+    };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);
