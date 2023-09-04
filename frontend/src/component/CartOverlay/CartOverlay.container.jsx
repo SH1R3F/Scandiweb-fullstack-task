@@ -3,17 +3,11 @@ import CartOverlay from "./CartOverlay.component";
 import {connect} from "react-redux";
 
 const mapStateToProps = state => ({
-
+    cartProducts: state.cart.cartProducts
 })
 
 const mapDispatchToProps = dispatch => ({
 
 })
 
-class CartOverlayContainer extends PureComponent {
-    render() {
-        return <CartOverlay/>;
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartOverlayContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay);
