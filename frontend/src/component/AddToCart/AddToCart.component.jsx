@@ -4,12 +4,12 @@ import './AddToCart.style.scss'
 
 class AddToCartComponent extends PureComponent {
     render() {
-        const {minicartStatus, setMiniCartState} = this.props
+        const {minicartStatus, setMiniCartState, cartProductsCount} = this.props
         return (
             <button className="MiniCart" onClick={() => setMiniCartState(!minicartStatus)}>
                 <img src="/empty-cart.png" alt="Cart"/>
 
-                <span className="MiniCart-Counter">2</span>
+                <span className="MiniCart-Counter">{cartProductsCount}</span>
             </button>
         );
     }

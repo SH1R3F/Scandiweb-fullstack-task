@@ -14,10 +14,12 @@ class CartOverlayComponent extends PureComponent {
     }
 
     render() {
+        const {cartProducts} = this.props
+
         return (
             <div className="CartOverlay">
                 <div className="CartOverlay-Counter">
-                    <strong>My Bag</strong>. 3 items
+                    <strong>My Bag</strong>. {cartProducts.length} items
                 </div>
 
                 <div className="CartOverlay-Items">

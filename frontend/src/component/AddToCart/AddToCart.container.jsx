@@ -4,7 +4,8 @@ import AddToCart from "./AddToCart.component";
 
 const mapStateToProps = (state) => {
     return {
-        minicartStatus: state.navbar.status
+        minicartStatus: state.navbar.status,
+        cartProductsCount: state.cart.cartProducts.length
     }
 }
 
