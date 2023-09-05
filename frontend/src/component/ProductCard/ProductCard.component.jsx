@@ -64,7 +64,7 @@ class ProductCardComponent extends PureComponent {
         return (
             <div className="ProductCard">
                 {product.inStock || <div className="ProductCard-OutOfStockOverlay">Out of stock</div>}
-                <Link to={`product/${product.id}`}><img className="ProductCard-Photo" src={product.gallery[0]}
+                <Link to={`/product/${product.id}`}><img className="ProductCard-Photo" src={product.gallery[0]}
                                                         alt="Product"/></Link>
                 <div className="ProductCard-AddToCart">
                     <button onClick={() => this.addToCart(product)}>
