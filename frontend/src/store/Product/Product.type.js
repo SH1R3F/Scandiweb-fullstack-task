@@ -1,0 +1,1 @@
+export const SET_PRODUCT_PAGE = 'SET_PRODUCT_PAGE'
