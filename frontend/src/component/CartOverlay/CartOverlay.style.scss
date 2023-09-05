@@ -35,6 +35,11 @@ body {
     color: #FFF;
     font-weight: 700;
     cursor: pointer;
+
+    &[disabled] {
+      background: grey;
+      cursor: initial;
+    }
   }
 }
 
