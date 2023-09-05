@@ -1,7 +1,7 @@
 import {PureComponent} from "react";
 
 import './CartOverlay.style.scss'
-import CartItem from "../CartItem/CartItem.component";
+import CartItem from "../CartItem/CartItem.container";
 
 class CartOverlayComponent extends PureComponent {
 
@@ -23,7 +23,7 @@ class CartOverlayComponent extends PureComponent {
                 </div>
 
                 <div className="CartOverlay-Items">
-                    {cartProducts.map((product, i) => <CartItem key={`${product.id}-${i}`} product={product}/>)}
+                    {cartProducts.map((product, i) => <CartItem key={`${product.id}-${i}`} product={product} index={i}/>)}
                 </div>
 
                 <div className="CartOverlay-Total">
