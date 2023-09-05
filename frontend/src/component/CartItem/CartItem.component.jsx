@@ -3,37 +3,62 @@ import {Fragment, PureComponent} from "react";
 import './CartItem.style.scss'
 
 class CartItemComponent extends PureComponent {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            product: props.product
+        }
+    }
+
+    quantityHandler = (value, absolute = false) => {
+        const product = {...this.state.product}
+        product.quantity = absolute ? value : product.quantity + value;
+
+        if (product.quantity <= 0) {
+            // Delete product
+        }
+
+        this.setState({product})
+    };
+
+    renderAttributes(product) {
+        return product.attrs.map(attr => (
+            <div key={attr.id} className="CartItem-Attribute">
+                <span className="CartItem-AttributeName">{attr.name}</span>
+                <div className="CartItem-Options">
+                    {attr.items.map((item) => (
+                        <Fragment key={item.id}>
+                            <input type="radio" name={attr.name} defaultValue={item.value}
+                                   id={`${product.id}-${attr.id}-${item.id}`}/>
+                            <label style={{background: attr.type === 'swatch' ? item.value : null}}
+                                   className={`CartItem-Option ${item.selected && 'CartItem-Option_isSelected'} ${attr.type === 'swatch' && 'CartItem-Option_isColor'}`}
+                                   htmlFor={`${product.id}-${attr.id}-${item.id}`}>
+                                {attr.type === 'text' && item.value}
+                            </label>
+                        </Fragment>
+                    ))}
+                </div>
+            </div>
+        ));
+    }
+
     render() {
-        const {product} = this.props;
-        console.log(product)
+        const {product} = this.state;
+
         return (
             <div className="CartItem">
                 <div className="CartItem-Details">
                     <h4 className="CartItem-Title">{product.name}</h4>
                     <span
                         className="CartItem-Price">{product.prices[0].currency.symbol}{product.prices[0].amount}</span>
-
-                    {product.attrs.map(attr => (
-                        <div key={attr.id} className="CartItem-Attribute">
-                            <span className="CartItem-AttributeName">{attr.name}</span>
-                            <div className="CartItem-Options">
-                                {attr.items.map((item) => (
-                                    <Fragment key={item.id}>
-                                        <input type="radio" name={attr.name} defaultValue={item.value}
-                                               id={`${product.id}-${attr.id}-${item.id}`}/>
-                                        <label style={{background: attr.type === 'swatch' ? item.value : null}}  className={`CartItem-Option ${item.selected && 'CartItem-Option_isSelected'} ${attr.type === 'swatch' && 'CartItem-Option_isColor'}`}  htmlFor={`${product.id}-${attr.id}-${item.id}`}>
-                                            {attr.type === 'text' && item.value}
-                                        </label>
-                                    </Fragment>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
+                    {this.renderAttributes(product)}
                 </div>
                 <div className="CartItem-Qty">
-                    <button onClick={() => {}}>+</button>
-                    <input type="number" defaultValue={product.quantity}/>
-                    <button onClick={() => {}}>-</button>
+                    <button onClick={() => this.quantityHandler(1)}>+</button>
+                    <input type="number" value={product.quantity} onChange={(e) => this.quantityHandler(e.target.value, true)}/>
+                    <button onClick={() => this.quantityHandler(-1)}>-</button>
                 </div>
                 <div className="CartItem-Photo">
                     <img src={product.gallery[0]} alt="Product"/>
