@@ -2,7 +2,7 @@ import {PureComponent} from "react";
 
 import './CartOverlay.style.scss'
 import CartItem from "../CartItem/CartItem.container";
-import {cartProductsCount} from "../../Util/helpers";
+import {cartProductsCount, cartProductsTotal} from "../../Util/helpers";
 
 class CartOverlayComponent extends PureComponent {
 
@@ -15,7 +15,7 @@ class CartOverlayComponent extends PureComponent {
     }
 
     render() {
-        const {cartProducts} = this.props
+        const {cartProducts, cartProductsTotal} = this.props
 
         return (
             <div className="CartOverlay">
@@ -29,7 +29,7 @@ class CartOverlayComponent extends PureComponent {
 
                 <div className="CartOverlay-Total">
                     <strong>Total</strong>
-                    <strong>$200.00</strong>
+                    <strong>${cartProducts.reduce((total, product) => total + (parseFloat(product.prices[0].amount) * product.quantity), 0).toFixed(2)}</strong>
                 </div>
 
                 <button className="CartOverlay-Submit">Place Order</button>
