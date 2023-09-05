@@ -18,7 +18,7 @@ class CartItemComponent extends PureComponent {
 
         const {index, deleteProduct, updateCartProductQty} = this.props;
         if (product.quantity <= 0) {
-            deleteProduct(index);
+            return deleteProduct(index);
         }
 
         this.setState({product})

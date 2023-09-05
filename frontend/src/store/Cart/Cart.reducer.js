@@ -1,13 +1,20 @@
-import {DELETE_CART_PRODUCT, UPDATE_CART_PRODUCT_QTY, UPDATE_CART_PRODUCTS} from "./Cart.type";
+import {
+    DELETE_CART_PRODUCT,
+    LOCALSTORAGE_CART_PRODUCTS,
+    UPDATE_CART_PRODUCT_QTY,
+    UPDATE_CART_PRODUCTS
+} from "./Cart.type";
 
 export const getInitialState = () => ({
-    cartProducts: []
+    cartProducts: JSON.parse(localStorage.getItem(LOCALSTORAGE_CART_PRODUCTS) || "[]")
 })
 
 export const CartReducer = (state = getInitialState(), action) => {
     switch (action.type) {
         case UPDATE_CART_PRODUCTS:
             const {products} = action
+
+            localStorage.setItem(LOCALSTORAGE_CART_PRODUCTS, JSON.stringify(products))
             return {
                 ...state,
                 cartProducts: products
@@ -15,8 +22,9 @@ export const CartReducer = (state = getInitialState(), action) => {
 
         case DELETE_CART_PRODUCT:
             const {productIndex} = action
-            const cartProducts = [...state.cartProducts]
+            const cartProducts = JSON.parse(JSON.stringify(state.cartProducts))
             cartProducts.splice(productIndex, 1)
+            localStorage.setItem(LOCALSTORAGE_CART_PRODUCTS, JSON.stringify(cartProducts))
             return {
                 ...state,
                 cartProducts
@@ -26,6 +34,8 @@ export const CartReducer = (state = getInitialState(), action) => {
             const {index, quantity} = action
             const productsCart = JSON.parse(JSON.stringify(state.cartProducts))
             productsCart[index].quantity = quantity;
+
+            localStorage.setItem(LOCALSTORAGE_CART_PRODUCTS, JSON.stringify(productsCart))
             return {
                 ...state,
                 cartProducts: productsCart
