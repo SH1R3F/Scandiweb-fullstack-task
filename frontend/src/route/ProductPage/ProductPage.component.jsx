@@ -4,12 +4,33 @@ import './ProductPage.style.scss'
 
 import ProductPreview from "../../component/ProductPreview/ProductPreview.component";
 import ProductDetails from "../../component/ProductDetails/ProductDetails.component";
+import {withParams} from "../withParams";
 
 class ProductPageComponent extends PureComponent {
+    componentDidMount() {
+        const {params, getProductPage} = this.props
+        getProductPage(params.productId)
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const {params, getProductPage} = this.props
+        const {productId: prevProductId} = prevProps.params
+
+        if (params.productId !== prevProductId) {
+            getProductPage(this.props.params.productId)
+        }
+    }
+
     render() {
+        const {product = []} = this.props
+
+        if (!product.id) {
+            return <div>Loading...</div>;
+        }
+
         return (
             <div className="ProductPage">
-                <ProductPreview />
+                <ProductPreview gallery={product.gallery} />
 
                 <ProductDetails/>
             </div>
@@ -17,4 +38,4 @@ class ProductPageComponent extends PureComponent {
     }
 }
 
-export default ProductPageComponent;
+export default withParams(ProductPageComponent);

@@ -63,7 +63,7 @@ class ProductCardComponent extends PureComponent {
         const {product} = this.props
         return (
             <div className="ProductCard">
-                {product.inStock || <div className="ProductCard-OutOfStockOverlay">Out of stock</div>}
+                {product.inStock || <Link to={`/product/${product.id}`}><div className="ProductCard-OutOfStockOverlay">Out of stock</div></Link>}
                 <Link to={`/product/${product.id}`}><img className="ProductCard-Photo" src={product.gallery[0]}
                                                         alt="Product"/></Link>
                 <div className="ProductCard-AddToCart">

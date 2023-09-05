@@ -7,7 +7,7 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import ProductPage from "./route/ProductPage/ProductPage.component";
+import ProductPage from "./route/ProductPage/ProductPage.container";
 import CategoryPage from "./route/CategoryPage/CategoryPage.container";
 
 const router = createBrowserRouter([
