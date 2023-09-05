@@ -1,4 +1,4 @@
-import {DELETE_CART_PRODUCT, UPDATE_CART_PRODUCTS} from "./Cart.type";
+import {DELETE_CART_PRODUCT, UPDATE_CART_PRODUCT_QTY, UPDATE_CART_PRODUCTS} from "./Cart.type";
 
 export const getInitialState = () => ({
     cartProducts: []
@@ -20,6 +20,15 @@ export const CartReducer = (state = getInitialState(), action) => {
             return {
                 ...state,
                 cartProducts
+            }
+
+        case UPDATE_CART_PRODUCT_QTY:
+            const {index, quantity} = action
+            const productsCart = JSON.parse(JSON.stringify(state.cartProducts))
+            productsCart[index].quantity = quantity;
+            return {
+                ...state,
+                cartProducts: productsCart
             }
 
         default:

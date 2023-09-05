@@ -14,14 +14,16 @@ class CartItemComponent extends PureComponent {
 
     quantityHandler = (value, absolute = false) => {
         const product = {...this.state.product}
-        product.quantity = absolute ? value : product.quantity + value;
+        product.quantity = absolute ? value : parseInt(product.quantity) + value;
 
+        const {index, deleteProduct, updateCartProductQty} = this.props;
         if (product.quantity <= 0) {
-            const {index, deleteProduct} = this.props;
             deleteProduct(index);
         }
 
         this.setState({product})
+        // Update global product quantity
+        updateCartProductQty(index, product.quantity)
     };
 
     renderAttributes(product) {
