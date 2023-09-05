@@ -1,5 +1,6 @@
 schema {
     query: Query
+    mutation: Mutation
 }
 
 type Query {
@@ -38,6 +39,7 @@ type AttributeValue {
     id: ID
     value: String
     display_value: String
+    selected: Boolean
 }
 
 type Price {
@@ -49,4 +51,16 @@ type Price {
 type Currency {
     label: String
     symbol: String
+}
+
+type Mutation {
+    placeOrder(order: [Order]!): Boolean
+}
+
+input Order {
+    id: ID
+#    quantity: Int
+#    name: String
+#    attrs: [Attribute]
+#    prices: [Price]
 }
