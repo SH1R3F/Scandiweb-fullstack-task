@@ -5,8 +5,8 @@ import {updateCartProducts} from "../../store/Cart/Cart.action";
 const mapStateToProps = (state) => ({
     cartProducts: state.cart.cartProducts
 })
-const mapDispatchToProps = (dispatch, product) => ({
-    updateCart: (product) => dispatch(updateCartProducts(product))
+const mapDispatchToProps = (dispatch) => ({
+    updateCart: (products) => dispatch(updateCartProducts(products))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

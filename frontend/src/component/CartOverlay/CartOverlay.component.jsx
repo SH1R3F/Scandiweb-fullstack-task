@@ -2,7 +2,7 @@ import {PureComponent} from "react";
 
 import './CartOverlay.style.scss'
 import CartItem from "../CartItem/CartItem.container";
-import {cartProductsCount, cartProductsTotal} from "../../Util/helpers";
+import {cartProductsCount} from "../../Util/helpers";
 
 class CartOverlayComponent extends PureComponent {
 
@@ -15,7 +15,7 @@ class CartOverlayComponent extends PureComponent {
     }
 
     render() {
-        const {cartProducts, cartProductsTotal} = this.props
+        const {cartProducts} = this.props
 
         return (
             <div className="CartOverlay">
