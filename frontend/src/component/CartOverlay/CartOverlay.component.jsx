@@ -31,6 +31,8 @@ class CartOverlayComponent extends PureComponent {
                     {cartProducts.map((product, i) => <CartItem key={`${product.id}-${i}`} product={product} index={i}/>)}
                 </div>
 
+                {!cartProducts.length && (<div className="CartOverlay-EmptyMsg">No products added to cart yet</div>)}
+
                 <div className="CartOverlay-Total">
                     <strong>Total</strong>
                     <strong>${cartProducts.reduce((total, product) => total + (parseFloat(product.prices[0].amount) * product.quantity), 0).toFixed(2)}</strong>

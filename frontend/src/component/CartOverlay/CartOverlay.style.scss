@@ -20,6 +20,11 @@ body {
     font-weight: 500;
   }
 
+  &-EmptyMsg {
+    margin: 30px 0;
+    text-align: center;
+  }
+
   &-Total {
     display: flex;
     justify-content: space-between;
