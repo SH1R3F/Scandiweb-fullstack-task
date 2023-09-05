@@ -27,6 +27,8 @@ class CartItemComponent extends PureComponent {
     };
 
     renderAttributes(product) {
+        const {index} = this.props;
+
         return product.attrs.map(attr => (
             <div key={attr.id} className="CartItem-Attribute">
                 <span className="CartItem-AttributeName">{attr.name}</span>
@@ -34,10 +36,10 @@ class CartItemComponent extends PureComponent {
                     {attr.items.map((item) => (
                         <Fragment key={item.id}>
                             <input type="radio" name={attr.name} defaultValue={item.value}
-                                   id={`${product.id}-${attr.id}-${item.id}`}/>
+                                   id={`${product.id}-${index}-${attr.id}-${item.id}`}/>
                             <label style={{background: attr.type === 'swatch' ? item.value : null}}
                                    className={`CartItem-Option ${item.selected && 'CartItem-Option_isSelected'} ${attr.type === 'swatch' && 'CartItem-Option_isColor'}`}
-                                   htmlFor={`${product.id}-${attr.id}-${item.id}`}>
+                                   htmlFor={`${product.id}-${index}-${attr.id}-${item.id}`}>
                                 {attr.type === 'text' && item.value}
                             </label>
                         </Fragment>
