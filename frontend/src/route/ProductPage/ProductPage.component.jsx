@@ -3,7 +3,7 @@ import {PureComponent} from "react";
 import './ProductPage.style.scss'
 
 import ProductPreview from "../../component/ProductPreview/ProductPreview.component";
-import ProductDetails from "../../component/ProductDetails/ProductDetails.component";
+import ProductDetails from "../../component/ProductDetails/ProductDetails.container";
 import {withParams} from "../withParams";
 
 class ProductPageComponent extends PureComponent {
@@ -32,7 +32,7 @@ class ProductPageComponent extends PureComponent {
             <div className="ProductPage">
                 <ProductPreview gallery={product.gallery} />
 
-                <ProductDetails product={product}/>
+                <ProductDetails product={product} key={product.id}/>
             </div>
         );
     }
