@@ -2,26 +2,9 @@ import {PureComponent} from "react";
 
 import './ProductCard.style.scss'
 import {Link} from "react-router-dom";
+import {addOrAppendToCart} from "../../Util/helpers";
 
 class ProductCardComponent extends PureComponent {
-    sameVariant(cartProduct, clonedProduct) {
-        // Check same product
-        if (cartProduct.id !== clonedProduct.id) {
-            return false;
-        }
-
-        // Check same attributes
-        for (const i of Object.keys(cartProduct.attrs)) {
-            for (const n of Object.keys(cartProduct.attrs[i].items)) {
-                if (clonedProduct.attrs[i].items[n].selected === true && !cartProduct.attrs[i].items[n].selected) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
     addToCart = (product) => {
         const {cartProducts, updateCart} = this.props
 
@@ -35,27 +18,7 @@ class ProductCardComponent extends PureComponent {
             return attr;
         });
 
-        let newCartProducts;
-
-        // Is it already in cart?
-        if (cartProducts.find(cartProduct => cartProduct.id === clonedProduct.id)) {
-
-            // Clone to mutate
-            const clonedCartProducts = JSON.parse(JSON.stringify(cartProducts));
-
-            newCartProducts = clonedCartProducts.map((cartProduct) => {
-                // Check equality
-                if (this.sameVariant(cartProduct, clonedProduct)) {
-                    cartProduct.quantity = cartProduct.quantity + 1;
-                }
-
-                return cartProduct;
-            })
-        } else {
-            clonedProduct.quantity = 1;
-            newCartProducts = [...cartProducts, clonedProduct];
-        }
-
+        const newCartProducts = addOrAppendToCart(cartProducts, clonedProduct);
         updateCart(newCartProducts)
     }
 

@@ -1,6 +1,7 @@
 import React, {Fragment, PureComponent} from 'react';
 
 import './ProductDetails.style.scss'
+import {addOrAppendToCart} from "../../Util/helpers";
 
 class ProductDetailsComponent extends PureComponent {
 
@@ -13,7 +14,7 @@ class ProductDetailsComponent extends PureComponent {
     }
 
     chooseItem(attrIndex, itemIndex) {
-        const variant = {...this.state.product}
+        const variant = JSON.parse(JSON.stringify(this.state.product))
 
         variant.attrs[attrIndex].items.map((item, i) => {
             item.selected = itemIndex === i;
@@ -58,7 +59,11 @@ class ProductDetailsComponent extends PureComponent {
     }
 
     addToCart() {
-        // Add to cart
+        const {product} = this.state;
+        const {cartProducts, updateCart} = this.props
+
+        const newCartProducts = addOrAppendToCart(cartProducts, product);
+        updateCart(newCartProducts)
     }
 
 
