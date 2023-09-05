@@ -1,11 +1,12 @@
 import {setMiniCartState} from "../../store/Navbar/Navbar.action";
 import {connect} from "react-redux";
 import AddToCart from "./AddToCart.component";
+import {cartProductsCount} from "../../Util/helpers";
 
 const mapStateToProps = (state) => {
     return {
         minicartStatus: state.navbar.status,
-        cartProductsCount: state.cart.cartProducts.length
+        cartProductsCount: cartProductsCount(state.cart.cartProducts)
     }
 }
 
