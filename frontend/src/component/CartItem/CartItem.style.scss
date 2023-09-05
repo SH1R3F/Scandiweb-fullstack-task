@@ -70,7 +70,8 @@
       background: #000;
 
       &.CartItem-Option_isSelected {
-        border: 1.5px solid #000715;
+        border: 1px solid #000715;
+        box-shadow: 2px 3px 5px 0 rgba(0, 0, 0, 0.6)
       }
     }
 

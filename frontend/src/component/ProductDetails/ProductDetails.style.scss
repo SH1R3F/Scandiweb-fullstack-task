@@ -58,8 +58,8 @@
       background: #000;
 
       &.ProductDetails-Option_isColor {
-        border: 2px solid #69ee8b;
-        box-shadow: 0 4px 12px 0 #00000060;
+        border: 1px solid #69ee8b;
+        box-shadow: 2px 3px 5px 0 rgba(0, 0, 0, 0.6)
       }
     }
   }
