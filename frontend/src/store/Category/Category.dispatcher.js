@@ -19,7 +19,7 @@ export class CategoryDispatcher {
     async getCategoryPage (dispatch, categoryId) {
         try {
             const data = await executePost(
-                prepareQuery(CategoryQuery.getCategoryPageQuery(categoryId))
+                prepareQuery(CategoryQuery.getCategoryPageQuery(categoryId || ''))
             );
 
             dispatch(setCategoryPage(data.category));

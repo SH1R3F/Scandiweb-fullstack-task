@@ -4,7 +4,7 @@ schema {
 
 type Query {
     categories: [Category]!
-    category(id: ID!): Category
+    category(id: ID): Category
     products: [Product]!
     product(id: ID!): Product
 }
