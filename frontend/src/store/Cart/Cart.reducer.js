@@ -1,6 +1,6 @@
 import {
     DELETE_CART_PRODUCT,
-    LOCALSTORAGE_CART_PRODUCTS,
+    LOCALSTORAGE_CART_PRODUCTS, PLACE_ORDER,
     UPDATE_CART_PRODUCT_QTY,
     UPDATE_CART_PRODUCTS
 } from "./Cart.type";
@@ -39,6 +39,13 @@ export const CartReducer = (state = getInitialState(), action) => {
             return {
                 ...state,
                 cartProducts: productsCart
+            }
+
+        case PLACE_ORDER:
+            localStorage.removeItem(LOCALSTORAGE_CART_PRODUCTS)
+            return {
+                ...state,
+                cartProducts: []
             }
 
         default:
