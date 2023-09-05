@@ -64,14 +64,13 @@
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
-    cursor: pointer;
 
     &_isSelected {
       color: #FFF;
       background: #000;
 
       &.CartItem-Option_isSelected {
-        border: 2px solid #5ECE7B;
+        border: 1.5px solid #000715;
       }
     }
 
