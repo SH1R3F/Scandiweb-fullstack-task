@@ -47,19 +47,20 @@
     flex-wrap: wrap;
     cursor: pointer;
 
-    &_isSelected {
-      color: #FFF;
-      background: #000;
-
-      &.ProductPage-Option_isSelected {
-        border: 1px solid #5ECE7B;
-      }
-    }
-
     &_isColor {
       width: 30px;
       height: 30px;
       border: none;
+    }
+
+    &_isSelected {
+      color: #FFF;
+      background: #000;
+
+      &.ProductDetails-Option_isColor {
+        border: 2px solid #69ee8b;
+        box-shadow: 0 4px 12px 0 #00000060;
+      }
     }
   }
 
@@ -85,6 +86,11 @@
     color: #FFF;
     font-weight: 700;
     cursor: pointer;
+
+    &[disabled] {
+      background: grey;
+      cursor: initial;
+    }
   }
 
   &-Description {

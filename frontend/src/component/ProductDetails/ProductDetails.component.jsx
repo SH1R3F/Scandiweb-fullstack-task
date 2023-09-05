@@ -1,65 +1,86 @@
-import React, {PureComponent} from 'react';
+import React, {Fragment, PureComponent} from 'react';
 
 import './ProductDetails.style.scss'
 
 class ProductDetailsComponent extends PureComponent {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            product: props.product
+        }
+    }
+
+    chooseItem(attrIndex, itemIndex) {
+        const variant = {...this.state.product}
+
+        variant.attrs[attrIndex].items.map((item, i) => {
+            item.selected = itemIndex === i;
+            return item;
+        })
+
+        this.setState({product: variant})
+    }
+
+
+    renderAttributes(product) {
+        return product.attrs.map((attr, i) => {
+            return (
+                <div key={attr.id} className="ProductDetails-Attribute">
+                    <span className="ProductDetails-AttributeName">{attr.name}</span>
+                    <div className="ProductDetails-Options">
+                        {attr.items.map((item, n) => {
+                            return (
+                                <Fragment key={item.id}>
+                                    <input type="radio" name={attr.name} value={item.value}
+                                           id={`${attr.id}-${item.value}`} onChange={() => this.chooseItem(i, n)}/>
+                                    <label style={{background: attr.type === 'swatch' ? item.value : null}}
+                                           htmlFor={`${attr.id}-${item.value}`}
+                                           className={`ProductDetails-Option ${item.selected && 'ProductDetails-Option_isSelected'} ${attr.type === 'swatch' && 'ProductDetails-Option_isColor'}`}>
+                                        {attr.type === 'text' && item.value}
+                                    </label>
+                                </Fragment>
+                            )
+                        })}
+                    </div>
+                </div>
+            )
+        });
+    }
+
+    isAllowed() {
+        const {product: {attrs, inStock}} = this.state;
+
+        return inStock && attrs.reduce((result, attr) => {
+            return result && !!attr.items.find(item => item.selected);
+        }, true)
+    }
+
+    addToCart() {
+        // Add to cart
+    }
+
+
     render() {
+        const {product} = this.state
+
         return (
             <div className="ProductDetails">
-                <h1>Running Shorts</h1>
+                <h1>{product.name}</h1>
 
-                <div className="ProductDetails-Attribute">
-                    <span className="ProductDetails-AttributeName">Size:</span>
-                    <div className="ProductDetails-Options">
-                        <input type="radio" name="size" value="xs" id="xs"/>
-                        <div className="ProductDetails-Option">
-                            <label htmlFor="xs">XS</label>
-                        </div>
-
-                        <input type="radio" name="size" value="s" id="s"/>
-                        <div className="ProductDetails-Option">
-                            <label htmlFor="s">S</label>
-                        </div>
-
-                        <input type="radio" name="size" value="m" id="m"/>
-                        <div className="ProductDetails-Option ProductDetails-Option_isSelected">
-                            <label htmlFor="m">M</label>
-                        </div>
-
-                        <input type="radio" name="size" value="l" id="l"/>
-                        <div className="ProductDetails-Option">
-                            <label htmlFor="l">L</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="ProductDetails-Attribute">
-                    <span className="ProductDetails-AttributeName">Color</span>
-                    <div className="ProductDetails-Options">
-                        <input type="radio" name="color" value="gray" id="gray"/>
-                        <label style={{background: '#D3D2D5'}} htmlFor="gray" className="ProductDetails-Option ProductDetails-Option_isSelected ProductDetails-Option_isColor">
-                        </label>
-
-                        <input type="radio" name="color" value="black" id="black"/>
-                        <label style={{background: '#2B2B2B'}} htmlFor="black" className="ProductDetails-Option ProductDetails-Option_isColor">
-                        </label>
-
-                        <input type="radio" name="color" value="green" id="green"/>
-                        <label style={{background: '#0F6450'}} htmlFor="green" className="ProductDetails-Option ProductDetails-Option_isColor">
-                        </label>
-                    </div>
-                </div>
+                {this.renderAttributes(product)}
 
                 <div className="ProductDetails-Price">
                     <div className="ProductDetails-AttributeName">Price</div>
-                    <strong>$50.00</strong>
+                    <strong>{product.prices[0].currency.symbol}{product.prices[0].amount.toFixed(2)}</strong>
                 </div>
 
-                <button className="ProductDetails-AddToCart">Add To Cart</button>
+                <button className="ProductDetails-AddToCart" disabled={!this.isAllowed()} onClick={() => this.addToCart()}>
+                    Add To Cart
+                </button>
 
-                <p className="ProductDetails-Description">Find stunning women's cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses and party dresses from all your favorite brands.</p>
-
-
+                <p className="ProductDetails-Description" dangerouslySetInnerHTML={{__html: product.description}}></p>
             </div>
         );
     }

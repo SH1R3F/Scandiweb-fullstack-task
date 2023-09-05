@@ -32,7 +32,7 @@ class ProductPageComponent extends PureComponent {
             <div className="ProductPage">
                 <ProductPreview gallery={product.gallery} />
 
-                <ProductDetails/>
+                <ProductDetails product={product}/>
             </div>
         );
     }
