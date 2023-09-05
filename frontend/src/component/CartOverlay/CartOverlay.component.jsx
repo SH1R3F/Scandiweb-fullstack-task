@@ -15,7 +15,9 @@ class CartOverlayComponent extends PureComponent {
     }
 
     submitOrder() {
-        console.log('Submitting order')
+        const {placeOrder, cartProducts} = this.props;
+
+        placeOrder(cartProducts)
     }
 
     render() {
@@ -38,7 +40,7 @@ class CartOverlayComponent extends PureComponent {
                     <strong>${cartProducts.reduce((total, product) => total + (parseFloat(product.prices[0].amount) * product.quantity), 0).toFixed(2)}</strong>
                 </div>
 
-                <button className="CartOverlay-Submit" disabled={!cartProducts.length} onClick={this.submitOrder}>Place Order</button>
+                <button className="CartOverlay-Submit" disabled={!cartProducts.length} onClick={() => this.submitOrder()}>Place Order</button>
             </div>
         );
     }

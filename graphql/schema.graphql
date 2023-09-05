@@ -54,13 +54,42 @@ type Currency {
 }
 
 type Mutation {
-    placeOrder(order: [Order]!): Boolean
+    placeOrder(order: [Order]!): Response
+}
+
+type Response {
+    message: String
 }
 
 input Order {
     id: ID
-#    quantity: Int
-#    name: String
-#    attrs: [Attribute]
-#    prices: [Price]
+    prices: [PriceInput]
+    name: String
+    quantity: Int
+    attrs: [AttributeInput]
+}
+
+input PriceInput {
+    id: ID
+    amount: Float
+    currency: CurrencyInput
+}
+
+input CurrencyInput {
+    label: String
+    symbol: String
+}
+
+input AttributeInput {
+    id: ID
+    name: String
+    type: String
+    items: [AttributeValueInput]
+}
+
+input AttributeValueInput {
+    id: ID
+    value: String
+    display_value: String
+    selected: Boolean
 }

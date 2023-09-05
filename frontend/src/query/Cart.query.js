@@ -2,7 +2,18 @@ import {Field} from "../Util/Query";
 
 export class CartQuery {
     getPlaceOrderMutation(cartProducts) {
-        return new Field('placeOrder').addArgument('order', '[Order]!', [{id: 123}]);
+        let x = cartProducts.map(product => {
+            return {
+                id: product.id,
+                name: product.name,
+                quantity: product.quantity,
+                prices: product.prices,
+                attrs: product.attrs
+            }
+        });
+        return new Field('placeOrder')
+            .addArgument('order', '[Order]!', x)
+            .addFieldList(['message']);
     }
 }
 

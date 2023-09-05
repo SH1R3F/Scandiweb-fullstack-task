@@ -12,7 +12,7 @@ export class CartDispatcher {
                 prepareMutation(CartQuery.getPlaceOrderMutation(cartProducts))
             );
 
-            // dispatch(updatedPlacedOrder());
+            dispatch(updatedPlacedOrder(data.placeOrder.message));
         } catch (error) {
             console.error(error);
         }

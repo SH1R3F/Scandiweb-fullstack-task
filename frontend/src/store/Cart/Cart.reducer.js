@@ -42,6 +42,10 @@ export const CartReducer = (state = getInitialState(), action) => {
             }
 
         case PLACE_ORDER:
+            const {message} = action;
+
+            console.log(message)
+
             localStorage.removeItem(LOCALSTORAGE_CART_PRODUCTS)
             return {
                 ...state,

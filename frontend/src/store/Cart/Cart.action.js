@@ -15,6 +15,7 @@ export const updateCartProductQty = (index, quantity) => ({
     index,
     quantity
 })
-export const updatedPlacedOrder = () => ({
+export const updatedPlacedOrder = (message) => ({
     type: PLACE_ORDER,
+    message
 })
