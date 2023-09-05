@@ -9,7 +9,7 @@ class AddToCartComponent extends PureComponent {
             <button className="MiniCart" onClick={() => setMiniCartState(!minicartStatus)}>
                 <img src="/empty-cart.png" alt="Cart"/>
 
-                <span className="MiniCart-Counter">{cartProductsCount}</span>
+                {cartProductsCount > 0 && <span className="MiniCart-Counter">{cartProductsCount}</span>}
             </button>
         );
     }
