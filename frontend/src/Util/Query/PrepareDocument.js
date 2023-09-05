@@ -81,3 +81,5 @@ export const prepareRequest = (fields, type) => {
 
 
 export const prepareQuery = (queries) => prepareRequest(queries, FieldType.QUERY);
+
+export const prepareMutation = (mutations) => prepareRequest(mutations, FieldType.MUTATION);
