@@ -9,6 +9,7 @@ class Router
 {
     private static array $routes = [];
     private static array $views  = [];
+    private static $fallback;
 
 
     private static function addRoute(string $request_method, string $path, string|callable|array $action): void
@@ -42,6 +43,11 @@ class Router
         static::addRoute('VIEW', $path, $view);
     }
 
+    public static function fallback(callable|array $action): void
+    {
+        static::$fallback = $action;
+    }
+
     /**
      * Add other request methods here if needed
      */
@@ -58,6 +64,11 @@ class Router
         if (!isset(static::$routes[$path])) {
             if (isset(static::$views[$path])) {
                 return self::resolveView(static::$views[$path]);
+            }
+
+            if (is_callable(static::$fallback)) {
+                $action = static::$fallback;
+                return $action();
             }
 
             throw new RouteNotFound();
