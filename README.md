@@ -14,3 +14,5 @@ To get started with the Scandiweb Junior Fullstack Developer Test Task, please f
 
 3. Run Composer Install:
     - Open a terminal or command prompt and navigate to the project's base directory then run `composer install`.
+
+4. Rename `frontend/.env.example` to `.env` and update your backend url, then re-run `yarn start`
