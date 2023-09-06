@@ -3,7 +3,7 @@ import {PureComponent} from "react";
 import './Navbar.style.scss'
 import AddToCart from "../AddToCart/AddToCart.container";
 import CartOverlay from "../CartOverlay/CartOverlay.container";
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 export class NavbarComponent extends PureComponent {
 
@@ -36,7 +36,7 @@ export class NavbarComponent extends PureComponent {
                             ))}
                         </ul>
                     </nav>
-                    <img className="Navbar-Logo" src="/a-logo.png" alt="Scandiweb"/>
+                    <Link to="/" className="Navbar-Logo"><img src="/a-logo.png" alt="Scandiweb"/></Link>
                     <AddToCart />
                     {minicartStatus && <CartOverlay/>}
                 </div>
