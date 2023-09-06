@@ -29,7 +29,7 @@ class ProductCardComponent extends PureComponent {
                 {product.inStock || <Link to={`/product/${product.id}`}><div className="ProductCard-OutOfStockOverlay">Out of stock</div></Link>}
                 <Link to={`/product/${product.id}`}><img className="ProductCard-Photo" src={product.gallery[0]}
                                                         alt="Product"/></Link>
-                <div className="ProductCard-AddToCart">
+                {product.inStock && <div className="ProductCard-AddToCart">
                     <button onClick={() => this.addToCart(product)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path
@@ -43,7 +43,7 @@ class ProductCardComponent extends PureComponent {
                                 fill="white"/>
                         </svg>
                     </button>
-                </div>
+                </div>}
                 <h3 className="ProductCard-Title"><Link to={`product/${product.id}`}>{product.name}</Link></h3>
                 <span className="ProductCard-Price">{product.prices[0].currency.symbol}{product.prices[0].amount}</span>
             </div>
