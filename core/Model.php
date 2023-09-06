@@ -22,6 +22,12 @@ abstract class Model
     protected $fillable;
 
 
+    /**
+     * Eager loading
+     */
+    protected array $with = [];
+
+
     public function __construct()
     {
         $this->db = Container::get(Database::class);
@@ -36,6 +42,23 @@ abstract class Model
         return array_map(function($record) {
             $model = new static;
             $model->attributes = $record;
+            return $model;
+        }, $records);
+    }
+    public function get(): array
+    {
+        $records = $this->db->get('*', $this->table);
+
+        $eagerLoads = $this->preLoad($records);
+
+        return array_map(function($record) use ($eagerLoads) {
+            $model = new static;
+            $model->attributes = $record;
+
+            foreach ($eagerLoads as $relation => $instances) {
+                $model->$relation = $instances;
+            }
+
             return $model;
         }, $records);
     }
@@ -121,7 +144,7 @@ abstract class Model
         }
 
         // Support mutators
-        if (method_exists($this, $name)) {
+        if (method_exists($this, $name) && !$this->$name() instanceof HasMany) {
             $accessor = $this->$name();
             $this->attributes[$name] = ($accessor->set)($value);
             return;
@@ -141,6 +164,52 @@ abstract class Model
     public function hasMany($model, $column): HasMany
     {
         return new HasMany($model, $column);
+    }
+
+
+    /**
+     * Eager loading
+     */
+    public static function with(...$relations): static
+    {
+        $model = new static;
+        $model->with = $relations;
+        return $model;
+    }
+
+    private function preLoad(array $records): array
+    {
+        if (!count($this->with)) {
+            return [];
+        }
+
+        $eagerLoads = [];
+        foreach ($this->with as $relation) {
+            if (!method_exists($this, $relation)) {
+                continue;
+            }
+
+            $callable = $this->$relation();
+            if (!($callable instanceof HasMany)) {
+                continue;
+            }
+
+            $ids = trim(array_reduce($records, function($result, $record) {
+                return "$result, {$record['id']}";
+            }, ''), ', ');
+
+            // Eager fetch the results
+            $child = new $callable->model;
+            $sub_records = $this->db->get('*', $child->table, "WHERE {$callable->column} IN ($ids)");
+
+            $eagerLoads[$relation] = array_map(function($record) use ($callable) {
+                $model = new $callable->model;
+                $model->attributes = $record;
+                return $model;
+            }, $sub_records);
+        }
+
+        return $eagerLoads;
     }
 
     private function prepareRelation(BelongsTo|HasMany $callable)
