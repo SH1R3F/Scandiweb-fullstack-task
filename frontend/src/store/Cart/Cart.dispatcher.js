@@ -1,4 +1,3 @@
-// import {setCategories, setCategoryPage} from "./Category.action";
 import {prepareMutation} from "../../Util/Query";
 import {executePost} from "../../Util/Request/Request";
 import CartQuery from "../../query/Cart.query";
