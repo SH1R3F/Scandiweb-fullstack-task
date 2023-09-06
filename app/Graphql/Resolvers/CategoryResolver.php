@@ -8,7 +8,7 @@ class CategoryResolver
 {
     public static function getCategories(array $rootValue, array $args): array
     {
-        return Category::all();
+        return Category::with('products')->get();
     }
 
     public static function getCategory(array $rootValue, array $args): Category
