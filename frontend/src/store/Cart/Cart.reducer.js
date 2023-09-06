@@ -1,4 +1,5 @@
 import {
+    CLEAR_PLACED_ORDER_MESSAGE,
     DELETE_CART_PRODUCT,
     LOCALSTORAGE_CART_PRODUCTS, PLACE_ORDER,
     UPDATE_CART_PRODUCT_QTY,
@@ -6,7 +7,8 @@ import {
 } from "./Cart.type";
 
 export const getInitialState = () => ({
-    cartProducts: JSON.parse(localStorage.getItem(LOCALSTORAGE_CART_PRODUCTS) || "[]")
+    cartProducts: JSON.parse(localStorage.getItem(LOCALSTORAGE_CART_PRODUCTS) || "[]"),
+    placedOrderMessage: null
 })
 
 export const CartReducer = (state = getInitialState(), action) => {
@@ -44,12 +46,17 @@ export const CartReducer = (state = getInitialState(), action) => {
         case PLACE_ORDER:
             const {message} = action;
 
-            console.log(message)
-
             localStorage.removeItem(LOCALSTORAGE_CART_PRODUCTS)
             return {
                 ...state,
-                cartProducts: []
+                cartProducts: [],
+                placedOrderMessage: message
+            }
+
+        case CLEAR_PLACED_ORDER_MESSAGE:
+            return {
+                ...state,
+                placedOrderMessage: null
             }
 
         default:

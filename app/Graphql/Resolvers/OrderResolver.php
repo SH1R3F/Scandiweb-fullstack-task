@@ -20,7 +20,7 @@ class OrderResolver
             'created_at' => date('Y-m-d H:i:s')
         ]);
 
-        return ['message' => 'Order placed successfully!'];
+        return ['message' => "Order with number #{$order->id} placed successfully!"];
     }
 
 }

@@ -1,4 +1,10 @@
-import {DELETE_CART_PRODUCT, PLACE_ORDER, UPDATE_CART_PRODUCT_QTY, UPDATE_CART_PRODUCTS} from "./Cart.type";
+import {
+    CLEAR_PLACED_ORDER_MESSAGE,
+    DELETE_CART_PRODUCT,
+    PLACE_ORDER,
+    UPDATE_CART_PRODUCT_QTY,
+    UPDATE_CART_PRODUCTS
+} from "./Cart.type";
 
 export const updateCartProducts = (products) => ({
     type: UPDATE_CART_PRODUCTS,
@@ -18,4 +24,8 @@ export const updateCartProductQty = (index, quantity) => ({
 export const updatedPlacedOrder = (message) => ({
     type: PLACE_ORDER,
     message
+})
+
+export const clearOrderMessage = () => ({
+    type: CLEAR_PLACED_ORDER_MESSAGE,
 })
